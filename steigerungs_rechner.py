@@ -41,6 +41,20 @@ def stockAV(path):
     xpoints = np.array(tsla_array_Date)
     ypoints = np.array(tsla_array_High_INT)
 
+    #average
+    ave_Array =[]
+    sub_ave_Array = []
+    x1 = 21
+    for x1 in range(len(tsla_array_High_INT)):
+        for y in range(20):
+            sub_ave_Array.append(tsla_array_High_INT[x1-y])
+        print("SUB:" + str(sub_ave_Array))
+        ave_Array.append(np.mean(sub_ave_Array))
+        sub_ave_Array.clear()
+
+
+
+
     #pitch
     yP_first = tsla_array_High_INT[0]
     print(len(tsla_array_High_INT))
@@ -55,6 +69,9 @@ def stockAV(path):
     lableName = "DQ: " + str(round(yP_last-yP_first, 2))
 
     plt.figure(figsize=(5, 2.7), layout='constrained')
+
+    #plot ave
+    plt.plot(ave_Array, color = "blue", linewidth = 2, linestyle = 'dotted', label = "average over 20 days")
 
 
     #plot lowerst and highest
