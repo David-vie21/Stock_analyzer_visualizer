@@ -1,3 +1,3 @@
-import steiungsr_rechner as sr
+import steigerungs_rechner as sr
 
 sr.stockAV(path ='TSLA.csv')
