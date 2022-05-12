@@ -10,10 +10,15 @@ def stockAV(path):
     f = open(path, newline='')
     #convert data
     tsla_csv = csv.DictReader(f, delimiter=',')
-    #def arrays
+    #def arrays for highes
     tsla_array_High= []
     tsla_array_Date= []
     tsla_array_High_INT= []
+
+    #def array for lowest
+    tsla_array_Low= []
+
+    tsla_array_Low_INT= []
 
     intItem = 1
     item2 = "string string 2"
@@ -29,6 +34,11 @@ def stockAV(path):
         floatItem = float(item2)
         tsla_array_High_INT.append(floatItem)
 
+    for item in tsla_csv:
+        tsla_array_Low.append(item['Low'])
+        item2 = str(item['Low'])
+        floatItem = float(item2)
+        tsla_array_Low_INT.append(floatItem)
 
 
     print("NEW ")
@@ -41,12 +51,15 @@ def stockAV(path):
     xpoints = np.array(tsla_array_Date)
     ypoints = np.array(tsla_array_High_INT)
 
+    ypointsLow = np.array(tsla_array_Low_INT)
+
+
     #average
     ave_Array =[]
     sub_ave_Array = []
-    x1 = 21
+    x1 = 8
     for x1 in range(len(tsla_array_High_INT)):
-        for y in range(20):
+        for y in range(7):
             sub_ave_Array.append(tsla_array_High_INT[x1-y])
         print("SUB:" + str(sub_ave_Array))
         ave_Array.append(np.mean(sub_ave_Array))
@@ -82,8 +95,12 @@ def stockAV(path):
 
     #plot pitch
     plt.plot([1, len(tsla_array_High_INT)-1], [yP_first, yP_last], label = lableName)
-    #plot aktie
+    #plot aktie highes
     plt.plot(ypoints)
+
+    #plot aktie lowest
+    plt.plot(ypointsLow, label = 'lowestPoints')
+
 
 
 
